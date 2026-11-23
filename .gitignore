@@ -20,6 +20,9 @@ models/*.pth
 runs/*/
 !runs/.gitkeep
 
+# 运行日志（训练/服务日志，不入库；原始 TensorBoard 事件文件仍保留在 runs/ 供提交）
+*.log
+
 # 前端上传临时文件
 frontend/uploads/
 
