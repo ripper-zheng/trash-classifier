@@ -38,17 +38,34 @@ python -c "import torch, torchvision; print('torch', torch.__version__, 'torchvi
 
 数据来自公开数据集 TrashNet：<https://github.com/garythung/trashnet>
 
+实测可用文件为 `data/dataset-resized.zip`（约 41 MB，2527 张六分类图像）。
+脚本通过 GitHub API 原始内容端点下载（网络代理环境下 raw.githubusercontent 常被拦截）：
+
 ```bash
 python src/download_data.py --output dataset/raw
 ```
 
-下载后按要求整理、清洗、分层划分（详见 `dataset_manifest.csv`）：
+下载后按要求清洗、分层划分（详见 `dataset_manifest.csv`）：
 
 ```bash
 python src/prepare_data.py --raw dataset/raw --out dataset --seed 42
 ```
 
-该脚本会：统一格式 → 感知哈希去重 → 分层划分 train/val/test（70/15/15）→ 生成 `dataset/dataset_manifest.csv` → 从 val/test 抽取 10 张样例图到 `dataset/samples/`（每类至少 1 张并标注类别）。
+该脚本会：感知哈希去重 → 分层划分 train/val/test（70/15/15）→ 生成 `dataset/dataset_manifest.csv` → 从 val/test 抽取 10 张样例图到 `dataset/samples/`（每类至少 1 张并标注类别）。
+
+**本机实测结果（写入报告第 3 章）：**
+
+| 类别 | 原始 | 去重后 | train | val | test |
+|---|---|---|---|---|---|
+| cardboard | 403 | 395 | 276 | 59 | 60 |
+| glass | 501 | 497 | 347 | 74 | 76 |
+| metal | 410 | 403 | 282 | 60 | 61 |
+| paper | 594 | 550 | 385 | 82 | 83 |
+| plastic | 482 | 471 | 329 | 70 | 72 |
+| trash | 137 | 135 | 94 | 20 | 21 |
+| **合计** | **2527** | **2451** | **1713** | **365** | **373** |
+
+共移除重复图片 76 张（感知哈希汉明距离 ≤5），无损坏/过小图片。
 
 > 数据体量较大，不随源码入库。提交压缩包时只需带 `dataset_manifest.csv` 与 `dataset/samples/`（10 张），完整图像可用本脚本重新获取，保证可复现。
 
