@@ -13,10 +13,18 @@
 ## 2. 环境安装
 
 ```bash
-# 建议使用 Python 3.10
+# 本机实测 Python 3.13.14；torch 2.6.0 + torchvision 0.21.0 兼容 3.13
+# Windows:
 python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+.venv\Scripts\activate
 pip install -r requirements.txt
+# Linux/Mac: source .venv/bin/activate
+```
+
+安装后记录实测版本（写入报告第 11 章）：
+
+```bash
+pip freeze > installed_versions.txt
 ```
 
 查看并记录实际版本（写入报告）：
