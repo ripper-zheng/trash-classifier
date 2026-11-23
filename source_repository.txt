@@ -1,8 +1,7 @@
-平台：GitHub / Gitee / GitLab（三选一，删除其余）
-项目地址：https://github.com/<你的用户名>/trash-classifier
-仓库可见性：公开（Public）—— 若为私有，须在截止前为评阅教师开通访问权限
+平台：GitHub
+项目地址：https://github.com/ripper-zheng/trash-classifier
+仓库可见性：公开（Public）
 
 说明：
-1. 本文件必须填写真实可访问的仓库地址，不能只提交压缩包里的代码。
-2. 仓库需保留完整提交历史，不接受仅上传一个 ZIP 或只有最终版本。
-3. 创建仓库后请把上面占位文字替换为真实信息。
+1. 仓库需保留完整提交历史，不接受仅上传 ZIP 或只有最终版本。
+2. 若尚未创建远程仓库，请按 GitHub建仓与推送指引.md 操作；建仓后本地址即可访问。
