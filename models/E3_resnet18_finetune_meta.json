@@ -19,6 +19,6 @@
     0.224,
     0.225
   ],
-  "best_epoch": 1,
-  "best_val_macro_f1": 0.29504714334526544
+  "best_epoch": 2,
+  "best_val_macro_f1": 0.4616777834094051
 }
