@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垃圾分类智能识别系统</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">♻</span>
+      <div>
+        <h1>垃圾分类智能识别系统</h1>
+        <p class="subtitle">基于 PyTorch ResNet18 · 六分类图像识别</p>
+      </div>
+    </div>
+    <div class="status-area">
+      <span id="service-status" class="badge badge-wait">服务检测中…</span>
+      <span id="model-badge" class="badge badge-model">模型：--</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 上传区 -->
+    <section class="card upload-card">
+      <h2>① 上传图片</h2>
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" hidden>
+        <div class="dropzone-inner" id="dropzone-inner">
+          <div class="icon">📷</div>
+          <p>点击选择图片，或拖拽到此处</p>
+          <p class="hint">支持 JPG / PNG / WEBP，单文件不超过 10 MB</p>
+        </div>
+        <img id="preview" class="preview hidden" alt="图片预览">
+      </div>
+      <div class="file-meta hidden" id="file-meta">
+        <span id="file-name"></span><span id="file-size"></span>
+      </div>
+      <div class="btn-row">
+        <button id="btn-select" class="btn btn-secondary" type="button">重新选择</button>
+        <button id="btn-predict" class="btn btn-primary" type="button" disabled>开始识别</button>
+        <button id="btn-camera" class="btn btn-ghost" type="button">调用摄像头</button>
+      </div>
+      <div id="camera-box" class="camera-box hidden">
+        <video id="camera-video" autoplay playsinline></video>
+        <button id="btn-capture" class="btn btn-primary" type="button">拍照并识别</button>
+      </div>
+      <p id="error-msg" class="error-msg hidden"></p>
+    </section>
+
+    <!-- 结果区 -->
+    <section class="card result-card">
+      <h2>② 识别结果</h2>
+
+      <div id="state-loading" class="state hidden">
+        <div class="spinner"></div>
+        <p>模型推理中…</p>
+      </div>
+
+      <div id="state-empty" class="state">
+        <div class="empty-icon">🗑️</div>
+        <p>上传一张垃圾图片开始识别</p>
+      </div>
+
+      <div id="state-result" class="hidden">
+        <div class="result-head">
+          <div>
+            <div id="result-cn" class="result-cn">--</div>
+            <div id="result-class" class="result-class">--</div>
+          </div>
+          <span id="result-category" class="tag">--</span>
+        </div>
+
+        <div class="confidence-block">
+          <div class="label-row">
+            <span>置信度</span><strong id="confidence-value">--</strong>
+          </div>
+          <div class="bar-track"><div id="confidence-bar" class="bar-fill"></div></div>
+        </div>
+
+        <h3>Top-3 预测</h3>
+        <div id="top3" class="top3"></div>
+
+        <div class="metrics-row">
+          <div class="metric"><span>推理耗时</span><strong id="latency">-- ms</strong></div>
+          <div class="metric"><span>模型</span><strong id="result-model">--</strong></div>
+          <div class="metric"><span>版本</span><strong id="result-version">--</strong></div>
+        </div>
+
+        <div id="advice" class="advice"></div>
+        <p id="review-hint" class="review-hint hidden">⚠ 置信度偏低，建议人工确认</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="card info-card">
+    <h2>模型与数据说明</h2>
+    <div class="info-grid">
+      <div><strong>类别</strong><p id="class-list">cardboard / glass / metal / paper / plastic / trash</p></div>
+      <div><strong>输入尺寸</strong><p id="input-size">--</p></div>
+      <div><strong>数据来源</strong><p>TrashNet 公开六分类数据集，仅用于课程学习</p></div>
+      <div><strong>结果说明</strong><p>结果由保存的 PyTorch 模型实时推理，仅供分类辅助，请结合投放规则判断</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">深度学习案例课程项目 · 垃圾分类六分类识别系统</footer>
+  <script src="script.js"></script>
+</body>
+</html>

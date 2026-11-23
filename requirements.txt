@@ -1,0 +1,18 @@
+# 深度学习案例项目 - 垃圾分类六分类
+# 环境：Python 3.13（本机实测）；torch 2.6.0 + torchvision 0.21.0 兼容 Python 3.13
+# 安装：pip install -r requirements.txt
+# 说明：课程要求“固定版本 + 如实记录”，不强制特定版本；安装后请用 pip freeze > installed_versions.txt 记录实测版本。
+
+torch==2.6.0
+torchvision==0.21.0
+numpy==2.2.6
+Pillow==11.1.0
+matplotlib==3.10.1
+scikit-learn==1.6.1
+pandas==2.2.3
+tensorboard==2.18.0
+Flask==3.1.0
+requests==2.32.3
+
+# 可选：Docker 部署使用
+# gunicorn==22.0.0

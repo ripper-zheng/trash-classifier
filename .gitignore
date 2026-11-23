@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# 数据原始图像（体积大，不入库；用 download_data.py 获取）
+dataset/train/
+dataset/val/
+dataset/test/
+dataset/raw/
+*.zip
+*.tar.gz
+
+# 模型权重（体积大；如需入库请自行移除本行）
+models/*.pth
+
+# TensorBoard 事件文件（体积大；保留目录占位）
+runs/*/
+!runs/.gitkeep
+
+# 前端上传临时文件
+frontend/uploads/
+
+# 编辑器和系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
